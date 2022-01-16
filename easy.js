@@ -31,8 +31,36 @@ var assert = require("assert")
 // Explanation: Empty array...
 
 const altNumbers = (numArray) => {
-    // TODO: COMPLETE THIS FUNCTION
-    return [];
+    if (numArray.length === 0) return [];
+
+    // Split positive and negative numbers
+    var posNumbers = numArray.filter(function(n) {
+        return n >= 0;
+    })
+    var negNumbers = numArray.filter(function(n) {
+        return n < 0;
+    })
+
+    // Determine first number
+    var firstArray = posNumbers;
+    var secondArray = negNumbers;
+    if (negNumbers.length > posNumbers.length) {
+        firstArray = negNumbers;
+        secondArray = posNumbers;
+    } 
+
+    var alternatingNumbers = [];
+    for (var i = 0; i < secondArray.length; i++) {
+        alternatingNumbers.push(firstArray[i]);
+        alternatingNumbers.push(secondArray[i]);
+    }
+    
+    // Add last number
+    if (firstArray.length > secondArray.length) {
+        alternatingNumbers.push(firstArray[firstArray.length - 1]);
+    }
+
+    return alternatingNumbers;
 }
 
 module.exports = { altNumbers } // Do not modify this line
